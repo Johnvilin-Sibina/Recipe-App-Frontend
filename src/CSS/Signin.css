@@ -1,0 +1,71 @@
+.signin-container {
+    background-color: #F8F9FA;
+  }
+  
+  .signin-card {
+    width: 400px;
+    border-radius: 10px;
+  }
+  
+  .signin-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .signin-title {
+    color: #E67E22;
+    font-weight: bold;
+  }
+ 
+  .form-label {
+    color: #333333;
+    font-weight: 500;
+  }
+  
+  .form-control:focus {
+    border-color: #E67E22;
+    box-shadow: 0 0 5px rgba(230, 126, 34, 0.5);
+  }
+  
+  .signin-btn {
+    background-color: #E67E22;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .signin-btn:hover {
+    background-color: #D35400;
+  }
+  
+  .google-btn {
+    background-color: #F1C40F;
+    color: #2C3E50;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .google-btn:hover {
+    background-color: #D4AC0D;
+  }
+  
+  .forgot-password-link {
+    color: #2C3E50;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .forgot-password-link:hover {
+    text-decoration: underline;
+  }
+  
+  .signup-link {
+    color: #E67E22;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,0 +1,50 @@
+.home-container {
+    height: 85vh;
+    background-color: #F8F9FA;
+    color: #2C3E50;
+    padding: 2rem;
+  }
+  
+  .home-logo {
+    width: 300px; 
+    height: 300px; 
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .brand-name {
+    color: #E67E22;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    color: #333333;
+  }
+  
+  .explore-btn {
+    background-color: #E67E22;
+    border: none;
+  }
+  
+  .explore-btn:hover {
+    background-color: #d35400;
+  }
+  
+  .join-btn {
+    background-color: #F1C40F;
+    border: none;
+    color: #2C3E50;
+  }
+  
+  .join-btn:hover {
+    background-color: #d4ac0d;
+  }
+
+  @media screen and (max-width: 287px) {
+    .join-btn{
+        margin-top: 8px;
+    }
+  }
