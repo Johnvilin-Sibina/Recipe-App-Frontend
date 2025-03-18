@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../CSS/Signup.css";
+import OAuth from "../Components/OAuth";
 
 const Signup = () => {
   return (
@@ -35,11 +36,7 @@ const Signup = () => {
         <div className="text-center my-3">— OR —</div>
 
         {/* Google Sign-Up Button */}
-        <div className="text-center">
-          <button className="btn google-btn w-100">
-            <i className="bi bi-google"></i> Sign Up with Google
-          </button>
-        </div>
+        <OAuth />
 
         {/* Already have an account? */}
         <div className="text-center mt-3">
