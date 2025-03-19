@@ -1,50 +1,91 @@
 .home-container {
-    height: 85vh;
-    background-color: #F8F9FA;
-    color: #2C3E50;
-    padding: 2rem;
-  }
-  
-  .home-logo {
-    width: 300px; 
-    height: 300px; 
-    margin-bottom: 1rem;
-  }
-  
-  .title {
-    font-size: 2.5rem;
-  }
-  
-  .brand-name {
-    color: #E67E22;
-  }
-  
-  .description {
-    font-size: 1.2rem;
-    color: #333333;
-  }
-  
-  .explore-btn {
-    background-color: #E67E22;
-    border: none;
-  }
-  
-  .explore-btn:hover {
-    background-color: #d35400;
-  }
-  
+  height: 85vh;
+  background-color: #F8F9FA;
+  color: #2C3E50;
+  padding: 2rem;
+}
+
+.home-logo {
+  width: 50%;
+  max-width: 250px;
+  height: 50%;
+  max-height: 250px;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+}
+
+.brand-name {
+  color: #E67E22;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #333333;
+}
+
+.explore-btn {
+  background-color: #E67E22;
+  border: none;
+}
+
+.explore-btn:hover {
+  background-color: #d35400;
+}
+
+.join-btn {
+  background-color: #F1C40F;
+  border: none;
+  color: #2C3E50;
+}
+
+.join-btn:hover {
+  background-color: #d4ac0d;
+}
+
+@media screen and (max-width: 287px) {
   .join-btn {
-    background-color: #F1C40F;
-    border: none;
-    color: #2C3E50;
+    margin-top: 8px;
   }
-  
-  .join-btn:hover {
-    background-color: #d4ac0d;
+}
+
+@media screen and (max-width: 576px) {
+  .title {
+    font-size: 1.8rem;
   }
 
-  @media screen and (max-width: 287px) {
-    .join-btn{
-        margin-top: 8px;
-    }
+  .description {
+    font-size: 1rem;
   }
+
+  .home-logo {
+    width: 70%;
+    max-width: 200px;
+  }
+
+  .explore-btn,
+  .join-btn {
+    max-width: 180px;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 287px) {
+  .join-btn {
+    margin-top: 8px;
+  }
+
+  .home-container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}

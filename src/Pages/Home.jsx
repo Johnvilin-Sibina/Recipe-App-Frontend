@@ -17,11 +17,11 @@ const Home = () => {
       </p>
 
       {/* Buttons */}
-      <div className="mt-4">
-        <Link to="/recipes" className="btn btn-primary explore-btn">
+      <div className="mt-4 gap-2 buttons">
+        <Link to="/recipes" className="btn btn-primary explore-btn me-2">
           Explore Recipes
         </Link>
-        <Link to="/signup" className="btn btn-warning join-btn ms-3">
+        <Link to="/signup" className="btn btn-warning join-btn me-2">
           Join Us
         </Link>
       </div>

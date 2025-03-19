@@ -1,9 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../CSS/ForgotPassword.css"; 
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../CSS/ForgotPassword.css";
+import axios from "axios";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 const ForgotPassword = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+  });
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .required("Email cannot be empty")
+      .matches(
+        /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/,
+        "Invalid Email Format"
+      ),
+  });
+
+  const formik = useFormik({
+    initialValues: formData,
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        await axios
+          .post("http://localhost:5000/api/auth/forgot-password", values)
+          .then((res) => {
+            setFormData(res.data);
+            navigate("/");
+          });
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+  });
+
   return (
-    <div className="forgot-container d-flex justify-content-center align-items-center vh-100">
+    <div className="forgot-container d-flex justify-content-center align-items-center p-5">
       <div className="forgot-card card p-4 shadow-lg">
         {/* Logo and Title */}
         <div className="text-center">
@@ -15,11 +50,21 @@ const ForgotPassword = () => {
         </div>
 
         {/* Forgot Password Form */}
-        <form className="mt-3">
+        <form className="mt-3" onSubmit={formik.handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Email Address</label>
-            <input type="email" className="form-control" placeholder="Enter your email" />
+            <input
+              id="email"
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+            />
           </div>
+          {formik.touched.email && formik.errors.email && (
+            <p className="mb-3 text-danger">{formik.errors.email}</p>
+          )}
           <button type="submit" className="btn forgot-btn w-100">
             Send Reset Link
           </button>
@@ -27,7 +72,9 @@ const ForgotPassword = () => {
 
         {/* Back to Sign-in */}
         <div className="text-center mt-3">
-          <Link to="/signin" className="signin-link">Back to Sign In</Link>
+          <Link to="/signin" className="signin-link">
+            Back to Sign In
+          </Link>
         </div>
       </div>
     </div>
