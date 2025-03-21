@@ -9,6 +9,7 @@ import ResetPassword from './Pages/ResetPassword';
 import AddRecipe from './Pages/AddRecipe';
 import Recipes from './Pages/Recipes';
 import FullRecipe from './Pages/FullRecipe';
+import UserProfile from './Pages/UserProfile';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
       <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
       <Route path='/addrecipe' element={<AddRecipe />} />
       <Route path='/recipes' element={< Recipes />} />
+      <Route path='/profile/:id' element={<UserProfile />} />
       <Route path ='/fullrecipe/:id' element={<FullRecipe />} />
      </Routes>
      </BrowserRouter>

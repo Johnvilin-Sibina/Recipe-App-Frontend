@@ -38,7 +38,7 @@ const Navbar = () => {
               <NavLink className="nav-link" to='/addrecipe'>Add Recipe</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link">Profile</NavLink>
+              <NavLink className="nav-link" to='/profile/:id'>Profile</NavLink>
             </li>
           </ul>
 
