@@ -7,6 +7,7 @@ import Signin from './Pages/Signin';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
 import AddRecipe from './Pages/AddRecipe';
+import Recipes from './Pages/Recipes';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <Route path='/forgotpassword' element={<ForgotPassword />} />
       <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
       <Route path='/addrecipe' element={<AddRecipe />} />
+      <Route path='/recipes' element={< Recipes />} />
      </Routes>
      </BrowserRouter>
     </div>

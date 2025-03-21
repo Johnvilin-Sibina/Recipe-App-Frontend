@@ -1,0 +1,50 @@
+/* Recipe Card Styling */
+.recipe-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .recipe-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Recipe Image */
+  .recipe-image {
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  /* Cooking Time */
+  .cooking-time {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Ingredients Styling */
+  .ingredients-title {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .ingredients-list {
+    padding-left: 20px;
+  }
+  
+  .ingredients-list li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* View Button */
+  .view-btn {
+    width: 100%;
+    background-color: #ff6f61;
+    border: none;
+  }
+  
+  .view-btn:hover {
+    background-color: #e65c50;
+  }
+  
