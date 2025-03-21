@@ -4,6 +4,7 @@ const initialState = {
   currentUser: null,
   error: null,
   loading: null,
+  recipe:[],
 };
 
 const userSlice = createSlice({
@@ -23,9 +24,22 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    addRecipeStart:(state)=>{
+      state.loading = true;
+      state.error = null;
+    },
+    addRecipeSuccess:(state,action)=>{
+      state.recipe = action.payload;
+      state.loading = false;
+      state.error = null
+    },
+    addRecipeFailure:(state,action)=>{
+      state.loading = FaBullseye;
+      state.error = action.payload
+    }
   },
 });
 
-export const { signInStart, signInSuccess, signInFailure } = userSlice.actions;
+export const { signInStart, signInSuccess, signInFailure, addRecipeStart, addRecipeSuccess, addRecipeFailure } = userSlice.actions;
 
 export default userSlice.reducer;

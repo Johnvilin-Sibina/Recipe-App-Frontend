@@ -6,6 +6,7 @@ import Signup from './Pages/Signup';
 import Signin from './Pages/Signin';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
+import AddRecipe from './Pages/AddRecipe';
 
 const App = () => {
   return (
@@ -13,11 +14,12 @@ const App = () => {
      <BrowserRouter>
      <Navbar />
      <Routes>
-      <Route element={<Home />} path="/" />
-      <Route element={<Signup />} path='/signup' />
-      <Route element={<Signin />} path='/signin' />
-      <Route element={<ForgotPassword />} path='/forgotpassword' />
-      <Route element={<ResetPassword />} path='/resetpassword/:id/:token' />
+      <Route path="/" element={<Home />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route path='/signin' element={<Signin />} />
+      <Route path='/forgotpassword' element={<ForgotPassword />} />
+      <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
+      <Route path='/addrecipe' element={<AddRecipe />} />
      </Routes>
      </BrowserRouter>
     </div>

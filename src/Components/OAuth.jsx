@@ -27,11 +27,12 @@ const OAuth = () => {
         name: result.user.displayName,
         email: result.user.email,
         profilePic: result.user.photoURL,}
-     const data = await axios.post("http://localhost:5000/api/auth/google",userData)
-
-        localStorage.setItem('Token',data.token)
-        dispatch(signInSuccess(data));
+     await axios.post("http://localhost:5000/api/auth/google",userData)
+     .then((res)=>{
+      localStorage.setItem('Token',res.data.token)
+        dispatch(signInSuccess(res.data));
         navigate("/");
+     })
     } catch (error) {
       dispatch(signInFailure(error.message));
     }

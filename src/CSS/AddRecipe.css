@@ -1,0 +1,63 @@
+.add-recipe-container {
+    background: #F8F9FA; 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.form-wrapper {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    max-width: 700px; 
+    text-align: center;
+}
+
+.title {
+    color: #2C3E50;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.8rem;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #333333; 
+    text-align: left;
+    display: block;
+}
+
+.submit-btn {
+    background-color: #E67E22; 
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #D35400; 
+}
+
+@media (max-width: 768px) {
+    .form-wrapper {
+        width: 90%; 
+        padding: 2rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+}

@@ -35,7 +35,7 @@ const Navbar = () => {
               <Link className="nav-link" >Recipes</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link">Add Recipe</Link>
+              <Link className="nav-link" to='/addrecipe'>Add Recipe</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link">Profile</Link>
@@ -43,7 +43,7 @@ const Navbar = () => {
           </ul>
 
           {/* Authentication Buttons */}
-          <Link className="btn btn-outline-primary ms-3">
+          <Link className="btn btn-outline-primary ms-3" to='/signin'>
             Sign In
           </Link>
         </div>

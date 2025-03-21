@@ -54,7 +54,7 @@ const Signin = () => {
           });
       } catch (error) {
         console.log(error.message);
-        dispatch(signInFailure());
+        dispatch(signInFailure(error.message));
       }
     },
   });
