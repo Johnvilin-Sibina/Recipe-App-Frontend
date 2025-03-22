@@ -4,7 +4,7 @@ import { fetchRecipesFailure, fetchRecipesSuccess, fetchRecipiesStart } from "..
 import axios from "axios";
 import RecipeCard from "../Components/RecipeCard";
 
-const Recipes = () => {
+const Recipes = ({ searchQuery }) => { 
     const { recipes } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
@@ -23,11 +23,16 @@ const Recipes = () => {
         fetchRecipes();
     }, []);
 
+    // Filter recipes based on search query
+    const filteredRecipes = recipes?.filter(recipe => 
+        recipe.title.toLowerCase().includes(searchQuery.toLowerCase()) 
+    );
+
     return (
         <div className="container mt-5">
             <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-                {recipes && recipes.length > 0 ? (
-                    recipes.map((recipe) => (
+                {filteredRecipes && filteredRecipes.length > 0 ? (
+                    filteredRecipes.map((recipe) => (
                         <RecipeCard key={recipe._id} recipe={recipe} />
                     ))
                 ) : (

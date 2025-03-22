@@ -5,7 +5,7 @@ import OAuth from "../Components/OAuth";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   signInFailure,
   signInStart,
@@ -15,6 +15,7 @@ import {
 const Signin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const{currentUser} = useSelector((state)=>state.user)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -50,7 +51,7 @@ const Signin = () => {
             setFormData(res.data);
             localStorage.setItem("Token", res.data.token);
             dispatch(signInSuccess(res.data.rest));
-            navigate("/");
+            navigate(`/profile/${currentUser.rest._id}`);
           });
       } catch (error) {
         console.log(error.message);

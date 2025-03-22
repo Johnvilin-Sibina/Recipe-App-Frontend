@@ -2,7 +2,7 @@ import React from 'react';
 import "../CSS/Signup.css";
 import { FcGoogle } from "react-icons/fc";
 import { app } from "../firebase";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import {
@@ -16,6 +16,7 @@ const OAuth = () => {
   const auth = getAuth(app);
   const dispatch = useDispatch();  
   const navigate = useNavigate();
+  const {currentUser} = useSelector((state)=>state.user)
 
   const handleSubmit = async () => {
     dispatch(signInStart())
@@ -31,7 +32,7 @@ const OAuth = () => {
      .then((res)=>{
       localStorage.setItem('Token',res.data.token)
         dispatch(signInSuccess(res.data));
-        navigate("/");
+        navigate(`/profile/${currentUser.rest._id}`);
      })
     } catch (error) {
       dispatch(signInFailure(error.message));

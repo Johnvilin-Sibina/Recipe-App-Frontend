@@ -1,10 +1,13 @@
 import React from "react";
+import { FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ searchQuery, setSearchQuery }) => { 
+  const { currentUser } = useSelector((state) => state.user);
+  const location = useLocation();
 
-  const {currentUser} = useSelector((state)=>state.user)
+
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light shadow-sm pb-3">
       <div className="container-fluid">
@@ -29,23 +32,41 @@ const Navbar = () => {
 
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
+          {location.pathname === "/recipes" && (
+            <form className="mx-auto w-50">
+              <div className="input-group">
+                <span className="input-group-text bg-white border-end-0">
+                  <FaSearch />
+                </span>
+                <input
+                  className="form-control border-start-0"
+                  type="search"
+                  placeholder="Search recipes..."
+                  aria-label="Search"
+                  value={searchQuery} 
+                  onChange={(e) => setSearchQuery(e.target.value.toLowerCase())} 
+                />
+              </div>
+            </form>
+          )}
+
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" to='/' >Home</NavLink>
+              <NavLink className="nav-link" to="/">Home</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to='/recipes' >Recipes</NavLink>
+              <NavLink className="nav-link" to="/recipes">Recipes</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to='/addrecipe'>Add Recipe</NavLink>
+              <NavLink className="nav-link" to="/addrecipe">Add Recipe</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to={`/profile/${currentUser.rest._id}`}>Profile</NavLink>
+              <NavLink className="nav-link" to={currentUser?.rest._id && `/profile/${currentUser.rest._id}`}>Profile</NavLink>
             </li>
           </ul>
 
           {/* Authentication Buttons */}
-          <Link className="btn btn-outline-primary ms-3" to='/signin'>
+          <Link className="btn btn-outline-primary ms-3" to="/signin">
             Sign In
           </Link>
         </div>

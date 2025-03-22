@@ -11,7 +11,7 @@ const RecipeCard = ({ recipe }) => {
     };
 
     return (
-        <div className="col">
+        <div className="col mb-5">
             <div className="card h-100 recipe-card">
                 {/* Recipe Image */}
                 <img
