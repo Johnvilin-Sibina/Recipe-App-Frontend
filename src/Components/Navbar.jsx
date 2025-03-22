@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
+  const {currentUser} = useSelector((state)=>state.user)
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light shadow-sm pb-3">
       <div className="container-fluid">
@@ -38,7 +40,7 @@ const Navbar = () => {
               <NavLink className="nav-link" to='/addrecipe'>Add Recipe</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to='/profile/:id'>Profile</NavLink>
+              <NavLink className="nav-link" to={`/profile/${currentUser.rest._id}`}>Profile</NavLink>
             </li>
           </ul>
 

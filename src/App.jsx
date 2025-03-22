@@ -10,6 +10,7 @@ import AddRecipe from './Pages/AddRecipe';
 import Recipes from './Pages/Recipes';
 import FullRecipe from './Pages/FullRecipe';
 import UserProfile from './Pages/UserProfile';
+import EditProfile from './Pages/EditProfile';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <Route path='/recipes' element={< Recipes />} />
       <Route path='/profile/:id' element={<UserProfile />} />
       <Route path ='/fullrecipe/:id' element={<FullRecipe />} />
+      <Route path ='/editprofile/:id' element={<EditProfile />} />
      </Routes>
      </BrowserRouter>
     </div>
