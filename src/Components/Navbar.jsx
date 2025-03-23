@@ -2,10 +2,12 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import '../CSS/Navbar.css'
 
 const Navbar = ({ searchQuery, setSearchQuery }) => { 
   const { currentUser } = useSelector((state) => state.user);
   const location = useLocation();
+  console.log(currentUser)
 
 
   return (
@@ -61,7 +63,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
               <NavLink className="nav-link" to="/addrecipe">Add Recipe</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to={currentUser?.rest._id && `/profile/${currentUser.rest._id}`}>Profile</NavLink>
+              <NavLink className="nav-link" to={currentUser?.rest?._id && `/profile/${currentUser.rest._id}`}>Profile</NavLink>
             </li>
           </ul>
 

@@ -50,8 +50,8 @@ const Signin = () => {
           .then((res) => {
             setFormData(res.data);
             localStorage.setItem("Token", res.data.token);
-            dispatch(signInSuccess(res.data.rest));
-            navigate(`/profile/${currentUser.rest._id}`);
+            dispatch(signInSuccess(res.data));
+            navigate('/recipes');
           });
       } catch (error) {
         console.log(error.message);
