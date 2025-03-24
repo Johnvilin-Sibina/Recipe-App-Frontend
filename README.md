@@ -1,6 +1,6 @@
 # 🍽️ TastyTrove - Recipe App
 
-TastyTrove is a **recipe management** app where users can explore add add their favorite recipes. The application provides **secure authentication**, an intuitive UI, and **seamless recipe management**. The application uses **Cloudinary** for image upload.
+TastyTrove is a **recipe management** app where users can explore and add their favorite recipes. The application provides **secure authentication**, an intuitive UI, and **seamless recipe management**. The application uses **Cloudinary** for image upload.
 
 ## ✨ Features
 
