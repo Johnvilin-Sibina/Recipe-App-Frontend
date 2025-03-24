@@ -5,15 +5,18 @@ import OAuth from "../Components/OAuth";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
     password: "",
   });
 
+  // Validation schema using Yup
   const validationSchema = Yup.object().shape({
     userName: Yup.string()
       .required("Username cannot be empty")
@@ -35,12 +38,14 @@ const Signup = () => {
       ),
   });
 
+  // Formik setup for form handling
   const formik = useFormik({
     initialValues: formData,
     validationSchema: validationSchema,
 
-    //Function to submit the data collected from the form
+    // Function to handle form submission
     onSubmit: async (values) => {
+      setLoading(true);
       try {
         await axios
           .post("http://localhost:5000/api/auth/register-user", values)
@@ -48,8 +53,9 @@ const Signup = () => {
             setFormData(res.data);
             navigate("/signin");
           });
+        setLoading(false);
       } catch (error) {
-        console.log(error.message);
+        toast.error(error.message);
       }
     },
   });
@@ -107,8 +113,12 @@ const Signup = () => {
           {formik.touched.password && formik.errors.password && (
             <p className="mb-3 text-danger">{formik.errors.password}</p>
           )}
-          <button type="submit" className="btn signup-btn w-100">
-            Sign Up
+          <button
+            type="submit"
+            className="btn signup-btn w-100"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Sign Up"}
           </button>
         </form>
 

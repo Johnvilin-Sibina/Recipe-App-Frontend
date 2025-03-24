@@ -12,13 +12,15 @@ import FullRecipe from "./Pages/FullRecipe";
 import UserProfile from "./Pages/UserProfile";
 import EditProfile from "./Pages/EditProfile";
 import PrivateRoute from "./Components/PrivateRoute";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <BrowserRouter>
-      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> 
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
@@ -31,7 +33,11 @@ const App = () => {
           <Route path="/fullrecipe/:id" element={<FullRecipe />} />
           <Route path="/editprofile/:id" element={<EditProfile />} />
         </Route>
-        <Route path="/recipes" element={<Recipes searchQuery={searchQuery} />} /> {/* 🔹 Pass searchQuery */}
+        <Route
+          path="/recipes"
+          element={<Recipes searchQuery={searchQuery} />}
+        />{" "}
+        {/* 🔹 Pass searchQuery */}
       </Routes>
     </BrowserRouter>
   );

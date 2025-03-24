@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../CSS/AddRecipe.css";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,15 +9,21 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import axios from "axios";
-import * as Yup from 'yup';
+import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 const AddRecipe = () => {
-
+  // Redux state management for user details
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // State to store uploaded image URL
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploading, setImageFileUploading] = useState(false);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+
+  // Initial form data
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -26,21 +32,27 @@ const AddRecipe = () => {
     instructions: "",
   });
 
-  const {currentUser} = useSelector((state)=>state.user)
-
+  // Function to handle image upload to Cloudinary
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
+
+    // Validate if a file is selected
     if (!file) {
       setImageFileUploadError("Please select a valid image file.");
+      alert("Please select a valid image file.");
       return;
     }
     setImageFileUploading(true);
     setImageFileUploadError(null);
+
+    // Create FormData object to send image to Cloudinary
     const data = new FormData();
     data.append("file", file);
-    data.append("upload_preset", "TastyTrove");
-    data.append("cloud_name", "dhke5mt23");
+    data.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+    data.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
+
     try {
+      // Upload image to Cloudinary
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dhke5mt23/image/upload",
         {
@@ -49,6 +61,8 @@ const AddRecipe = () => {
         }
       );
       const uploadResponse = await res.json();
+
+      // Check if upload was successful
       if (uploadResponse?.secure_url) {
         setImageFileUrl(uploadResponse.url);
         setFormData((prev) => ({
@@ -57,14 +71,16 @@ const AddRecipe = () => {
         }));
       } else {
         setImageFileUploadError("Failed to upload image. Please try again");
+        alert("Failed to upload image. Please try again");
       }
     } catch (error) {
       setImageFileUploadError(error);
+      alert("Failed to upload image: " + error.message);
     }
     setImageFileUploading(false);
   };
 
-
+  // Define validation schema using Yup
   const validationSchema = Yup.object().shape({
     title: Yup.string()
       .required("Title cannot be empty")
@@ -95,39 +111,50 @@ const AddRecipe = () => {
       ),
   });
 
+  // Initialize formik for form validation and submission
   const formik = useFormik({
     initialValues: formData,
     validationSchema: validationSchema,
 
     onSubmit: async (values) => {
       try {
-        dispatch(addRecipeStart())
+        dispatch(addRecipeStart());
 
+        // Format the payload to send to backend
         const payload = {
-            ...values,
-            ingredients: values.ingredients.split(", "),
-            instructions: formik.values.instructions.split(". "),
-            user: currentUser.rest._id,
-            image: imageFileUrl
-        }
+          ...values,
+          ingredients: values.ingredients.split(", "), // Convert ingredients string to an array
+          instructions: formik.values.instructions.split(". "), // Convert instructions string to an array
+          user: currentUser.rest._id,
+          image: imageFileUrl,
+        };
+
+        // Send data to the backend
         await axios
-          .post("http://localhost:5000/api/recipe/add-recipe",payload,
-            {
-                headers:{
-                    'token':localStorage.getItem('Token')
-                }
-            }
-          )
+          .post("http://localhost:5000/api/recipe/add-recipe", payload, {
+            headers: {
+              token: localStorage.getItem("Token"), // Pass authentication token
+            },
+          })
           .then((res) => {
             setFormData(res.data);
-            dispatch(addRecipeSuccess(res.data.recipe))
-            navigate("/");
+            dispatch(addRecipeSuccess(res.data.recipe));
+            toast.success(res.data.message);
+            navigate("/recipes");
           });
       } catch (error) {
-        dispatch(addRecipeFailure(error.message))
+        dispatch(addRecipeFailure(error.message));
       }
     },
   });
+
+  // Display error messages from Redux
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
   return (
     <div className="add-recipe-container">
       <div className="form-wrapper">
@@ -191,7 +218,7 @@ const AddRecipe = () => {
               className="form-control"
               rows="3"
               placeholder="List ingredients separated by commas"
-              required              
+              required
               value={formik.values.ingredients}
               onChange={formik.handleChange}
             />
@@ -199,7 +226,7 @@ const AddRecipe = () => {
 
           {formik.touched.ingredients && formik.errors.ingredients && (
             <p className="mb-3 text-danger">{formik.errors.ingredients}</p>
-          )} 
+          )}
 
           {/* Instructions */}
           <div className="mb-3">
@@ -217,7 +244,7 @@ const AddRecipe = () => {
 
           {formik.touched.instructions && formik.errors.instructions && (
             <p className="mb-3 text-danger">{formik.errors.instructions}</p>
-          )} 
+          )}
 
           {/* Upload Image */}
           <div className="mb-3">
@@ -234,8 +261,12 @@ const AddRecipe = () => {
 
           {/* Submit Button */}
           <div className="text-center">
-            <button type="submit" className="btn submit-btn">
-              Add Recipe
+            <button
+              type="submit"
+              className="btn submit-btn"
+              disabled={loading || imageFileUploading}
+            >
+              {loading || imageFileUploading ? "Loading..." : "Add Recipe"}
             </button>
           </div>
         </form>

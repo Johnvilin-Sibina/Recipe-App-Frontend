@@ -2,20 +2,24 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import '../CSS/Navbar.css'
+import "../CSS/Navbar.css";
 
-const Navbar = ({ searchQuery, setSearchQuery }) => { 
+const Navbar = ({ searchQuery, setSearchQuery }) => {
   const { currentUser } = useSelector((state) => state.user);
   const location = useLocation();
-  console.log(currentUser)
-
 
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light shadow-sm pb-3">
       <div className="container-fluid">
         {/* Logo */}
         <Link className="navbar-brand fw-bold d-flex align-items-center">
-          <img src="./logo.png" alt="TastyTrove Logo" width="40" height="40" className="me-2" />
+          <img
+            src="./logo.png"
+            alt="TastyTrove Logo"
+            width="40"
+            height="40"
+            className="me-2"
+          />
           TastyTrove
         </Link>
 
@@ -34,6 +38,7 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
 
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
+          {/* Display search filter only if the route is recipes */}
           {location.pathname === "/recipes" && (
             <form className="mx-auto w-50">
               <div className="input-group">
@@ -45,8 +50,8 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
                   type="search"
                   placeholder="Search recipes..."
                   aria-label="Search"
-                  value={searchQuery} 
-                  onChange={(e) => setSearchQuery(e.target.value.toLowerCase())} 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
                 />
               </div>
             </form>
@@ -54,16 +59,29 @@ const Navbar = ({ searchQuery, setSearchQuery }) => {
 
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/">Home</NavLink>
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/recipes">Recipes</NavLink>
+              <NavLink className="nav-link" to="/recipes">
+                Recipes
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/addrecipe">Add Recipe</NavLink>
+              <NavLink className="nav-link" to="/addrecipe">
+                Add Recipe
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to={currentUser?.rest?._id && `/profile/${currentUser.rest._id}`}>Profile</NavLink>
+              <NavLink
+                className="nav-link"
+                to={
+                  currentUser?.rest?._id && `/profile/${currentUser.rest._id}`
+                }
+              >
+                Profile
+              </NavLink>
             </li>
           </ul>
 

@@ -10,7 +10,7 @@ const firebaseConfig = {
   projectId: "tastytrove-e7823",
   storageBucket: "tastytrove-e7823.firebasestorage.app",
   messagingSenderId: "996381415903",
-  appId: "1:996381415903:web:1492ccf8a0962ad955cc6a"
+  appId: "1:996381415903:web:1492ccf8a0962ad955cc6a",
 };
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

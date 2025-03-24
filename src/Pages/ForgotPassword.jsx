@@ -4,13 +4,16 @@ import "../CSS/ForgotPassword.css";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
   });
 
+  // Validation schema for email input using Yup
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .required("Email cannot be empty")
@@ -25,14 +28,17 @@ const ForgotPassword = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
+        setLoading(true); // Set loading state to true before making API call
         await axios
           .post("http://localhost:5000/api/auth/forgot-password", values)
           .then((res) => {
             setFormData(res.data);
+            toast.success(res.data.message);
             navigate("/");
           });
+        setLoading(false); // Reset loading state after request completion
       } catch (error) {
-        console.log(error.message);
+        toast.error(error.message);
       }
     },
   });
@@ -65,8 +71,12 @@ const ForgotPassword = () => {
           {formik.touched.email && formik.errors.email && (
             <p className="mb-3 text-danger">{formik.errors.email}</p>
           )}
-          <button type="submit" className="btn forgot-btn w-100">
-            Send Reset Link
+          <button
+            type="submit"
+            className="btn forgot-btn w-100"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : " Send Reset Link"}
           </button>
         </form>
 

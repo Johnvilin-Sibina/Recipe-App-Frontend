@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../CSS/Signin.css";
 import OAuth from "../Components/OAuth";
@@ -11,11 +11,13 @@ import {
   signInStart,
   signInSuccess,
 } from "../Redux/Slice/userSlice";
+import { toast } from "react-toastify";
 
 const Signin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const{currentUser} = useSelector((state)=>state.user)
+
+  const { error, loading } = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -51,14 +53,20 @@ const Signin = () => {
             setFormData(res.data);
             localStorage.setItem("Token", res.data.token);
             dispatch(signInSuccess(res.data));
-            navigate('/recipes');
+            navigate("/recipes");
           });
       } catch (error) {
-        console.log(error.message);
         dispatch(signInFailure(error.message));
       }
     },
   });
+
+  // Display error messages from Redux
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   return (
     <div className="signin-container d-flex justify-content-center align-items-center p-5">
@@ -100,8 +108,12 @@ const Signin = () => {
           {formik.touched.password && formik.errors.password && (
             <p className="mb-3 text-danger">{formik.errors.password}</p>
           )}
-          <button type="submit" className="btn signin-btn w-100">
-            Sign In
+          <button
+            type="submit"
+            className="btn signin-btn w-100"
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Sign In"}
           </button>
         </form>
 
