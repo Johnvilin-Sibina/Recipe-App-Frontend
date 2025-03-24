@@ -7,7 +7,7 @@ import {
   FaSignOutAlt,
   FaTrash,
 } from "react-icons/fa";
-import "../CSS/UserProfile.css";
+import "../CSS/userProfile.css";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
