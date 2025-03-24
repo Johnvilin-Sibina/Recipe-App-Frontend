@@ -1,6 +1,6 @@
 # 🍽️ TastyTrove - Recipe App
 
-TastyTrove is a **recipe management** app where users can explore add add their favorite recipes. The application provides **secure authentication**, an intuitive UI, and **seamless recipe management**.
+TastyTrove is a **recipe management** app where users can explore add add their favorite recipes. The application provides **secure authentication**, an intuitive UI, and **seamless recipe management**. The application uses **Cloudinary** for image upload.
 
 ## ✨ Features
 
@@ -70,6 +70,13 @@ npm run build
 ### 5️⃣ Run the development server
 ```sh
 npm run dev
+```
+### 6️⃣ Configure Environment Variables
+Create a `.env` file in the root directory and add the following:
+```env
+VITE_FIREBASE_API_KEY = <Your_firebase_api_key>
+VITE_CLOUD_NAME = <Your_cloudinary_cloud_name>
+VITE_UPLOAD_PRESET = <Your_cloudinary_upload_preset>
 ```
 ## 🌍Live Site
 [Visit Site](https://tasty-trove-recipes.netlify.app/)
