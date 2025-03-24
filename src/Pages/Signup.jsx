@@ -48,7 +48,7 @@ const Signup = () => {
       setLoading(true);
       try {
         await axios
-          .post("http://localhost:5000/api/auth/register-user", values)
+          .post("https://recipe-app-backend-nz2n.onrender.com/api/auth/register-user", values)
           .then((res) => {
             setFormData(res.data);
             navigate("/signin");

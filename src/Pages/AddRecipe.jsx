@@ -131,7 +131,7 @@ const AddRecipe = () => {
 
         // Send data to the backend
         await axios
-          .post("http://localhost:5000/api/recipe/add-recipe", payload, {
+          .post("https://recipe-app-backend-nz2n.onrender.com/api/recipe/add-recipe", payload, {
             headers: {
               token: localStorage.getItem("Token"), // Pass authentication token
             },

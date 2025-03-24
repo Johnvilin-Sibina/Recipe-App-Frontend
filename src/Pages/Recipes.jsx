@@ -17,7 +17,7 @@ const Recipes = ({ searchQuery }) => {
     try {
       dispatch(fetchRecipiesStart());
       const res = await axios.get(
-        "http://localhost:5000/api/recipe/get-recipies"
+        "https://recipe-app-backend-nz2n.onrender.com/api/recipe/get-recipies"
       );
       dispatch(fetchRecipesSuccess(res.data.recipes));
     } catch (error) {

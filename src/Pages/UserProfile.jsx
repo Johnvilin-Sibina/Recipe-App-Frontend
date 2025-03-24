@@ -33,7 +33,7 @@ const UserProfile = () => {
     try {
       await axios
         .get(
-          `http://localhost:5000/api/user/shared-recipes/${currentUser.rest._id}`,
+          `https://recipe-app-backend-nz2n.onrender.com/api/user/shared-recipes/${currentUser.rest._id}`,
           {
             headers: {
               token: localStorage.getItem("Token"),
@@ -66,7 +66,7 @@ const UserProfile = () => {
       dispatch(deleteUserStart());
       await axios
         .delete(
-          `http://localhost:5000/api/user/delete-user/${currentUser.rest._id}`,
+          `https://recipe-app-backend-nz2n.onrender.com/api/user/delete-user/${currentUser.rest._id}`,
           {
             headers: {
               token: localStorage.getItem("Token"),

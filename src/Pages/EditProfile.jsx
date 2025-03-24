@@ -114,7 +114,7 @@ const EditProfile = () => {
       try {
         await axios
           .put(
-            `http://localhost:5000/api/user/update-user/${currentUser.rest._id}`,
+            `https://recipe-app-backend-nz2n.onrender.com/api/user/update-user/${currentUser.rest._id}`,
             payload,
             {
               headers: {

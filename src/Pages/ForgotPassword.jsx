@@ -30,7 +30,7 @@ const ForgotPassword = () => {
       try {
         setLoading(true); // Set loading state to true before making API call
         await axios
-          .post("http://localhost:5000/api/auth/forgot-password", values)
+          .post("https://recipe-app-backend-nz2n.onrender.com/api/auth/forgot-password", values)
           .then((res) => {
             setFormData(res.data);
             toast.success(res.data.message);

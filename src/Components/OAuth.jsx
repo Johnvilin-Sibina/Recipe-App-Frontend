@@ -35,7 +35,7 @@ const OAuth = () => {
 
       // Sending user data to the backend for authentication
       await axios
-        .post("http://localhost:5000/api/auth/google", userData)
+        .post("https://recipe-app-backend-nz2n.onrender.com/api/auth/google", userData)
         .then((res) => {
           localStorage.setItem("Token", res.data.token);
           dispatch(signInSuccess(res.data));

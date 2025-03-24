@@ -11,7 +11,7 @@ const FullRecipe = () => {
   const fetchRecipe = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/recipe/get-recipe/${id}`,
+        `https://recipe-app-backend-nz2n.onrender.com/api/recipe/get-recipe/${id}`,
         {
           headers: {
             token: localStorage.getItem("Token"),

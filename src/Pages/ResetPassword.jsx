@@ -38,7 +38,7 @@ const ResetPassword = () => {
         setLoading(true); // Set loading state to true before making API call
         await axios
           .put(
-            `http://localhost:5000/api/auth/reset-password/${id}/${token}`,
+            `https://recipe-app-backend-nz2n.onrender.com/api/auth/reset-password/${id}/${token}`,
             values
           )
           .then((res) => {
